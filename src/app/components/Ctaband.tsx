@@ -21,8 +21,8 @@ export default function Ctaband() {
 
   useEffect(() => {
     const setupAnimation = (
-      imageRef: React.RefObject<HTMLDivElement>,
-      overlayRef: React.RefObject<HTMLDivElement>
+      imageRef: React.RefObject<HTMLDivElement | null>,
+      overlayRef: React.RefObject<HTMLDivElement | null>
     ) => {
       if (!imageRef.current || !overlayRef.current) return;
 
@@ -69,7 +69,7 @@ export default function Ctaband() {
         if (tl && tl.scrollTrigger) {
           tl.scrollTrigger.kill();
         }
-        tl && tl.kill();
+        if (tl) tl.kill();
       });
     };
   }, []);
