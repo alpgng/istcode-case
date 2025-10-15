@@ -10,6 +10,10 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --primary: #808CFD;
+  --secondary: #E9ECff;
+  --white: #FFFFFF;
+  --black: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +23,147 @@
   }
 }
 
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-[var(--background)] text-[var(--foreground)] font-sans scroll-smooth;
+}  
+
+@layer components {
+  
+  .Header1 {
+    @apply font-bold text-[116px] leading-[110%];
+  }
+
+  .Header2 {
+    @apply font-bold text-black text-[45px] leading-[91%];
+  }
+
+  .Header3 {
+    @apply font-bold text-white text-[57px] leading-[100%];;
+  }
+
+  .Header4 {
+    @apply font-bold bg-transparent text-[25px] leading-[91%];
+  }
+
+  .Header5 {
+    @apply font-bold text-[22px] leading-[131%];
+  }
+
+  .Paragraph1 {
+    @apply text-[19px] leading-[131%];;
+  }
+
+  .Paragraph2 {
+    @apply text-[17px] leading-[131%];;
+  }
+
+  .Paragraph3 {
+    @apply text-[14px] leading-[131%];;
+  }
+
+  .Navlink {
+    @apply text-[15px] leading-[110%];
+  }
+
+  /* Buton Stilleri */
+  .Button {
+    @apply rounded-md font-medium transition-colors text-center text-[15px] leading-[110%] py-3 px-4;
+  }
+
+  .Button-primary {
+    @apply bg-[var(--primary)] text-white hover:bg-[var(--primary)]/90;
+  }
+
+  .Button-secondary {
+    @apply bg-[var(--secondary)] text-black;
+  }
+
+  .Button-dark {
+    @apply bg-[#1A0A0A] text-white hover:bg-[#1A0A0A]/90;
+  }
+
+  .Button-outline {
+    @apply border border-[var(--foreground)] bg-transparent text-[var(--foreground)] hover:bg-[var(--foreground)]/10;
+  }
+
+  .card {
+    @apply rounded-lg border border-[var(--foreground)]/10 bg-[var(--background)] p-6 md:p-[3vh_2vw];
+  }
+
+  .section {
+    @apply py-12 md:py-[8vh] lg:py-[10vh];
+  }
+
+  .nav-link {
+    @apply text-sm font-medium transition-colors hover:text-[var(--foreground)]/80;
+  }
+
+  .feature-grid {
+    @apply grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-[2vw] lg:grid-cols-3 lg:gap-[3vw];
+  }
+
+  /* Responsive Container Yapıları */
+  .container-fluid {
+    @apply w-full px-4 md:px-[4vw];
+  }
+
+  .container-mobile {
+    @apply w-full mx-auto max-w-[799px] px-4 md:px-[3vw];
+  }
+
+  .container-tablet {
+    @apply w-full mx-auto max-w-[1279px] px-6 md:px-[4vw];
+  }
+
+  .container-desktop {
+    @apply w-full mx-auto max-w-[1440px] px-8 md:px-[5vw];
+  }
+  
+  .container-left-aligned {
+    @apply w-full ml-0 max-w-[1440px] px-8 md:px-[5vw] text-left;
+  }
+
+  /* Responsive Breakpoint Sınıfları */
+  .mobile-only {
+    @apply block md:hidden;
+  }
+
+  .tablet-only {
+    @apply hidden md:block lg:hidden;
+  }
+
+  .desktop-only {
+    @apply hidden lg:block;
+  }
+
+  .mobile-tablet {
+    @apply block lg:hidden;
+  }
+
+  .tablet-desktop {
+    @apply hidden md:block;
+  }
+
+  /* Responsive Grid Yapıları */
+  .grid-mobile {
+    @apply grid grid-cols-1 gap-4 md:gap-[2vw];
+  }
+
+  .grid-tablet {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-[3vw];
+  }
+
+  .grid-desktop {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-[4vw];
+  }
+
+  /* Responsive Flex Yapıları */
+  .flex-responsive {
+    @apply flex flex-col md:flex-row;
+  }
+
+  .flex-responsive-reverse {
+    @apply flex flex-col-reverse md:flex-row;
+  }
 }

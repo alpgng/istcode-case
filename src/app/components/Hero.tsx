@@ -1,0 +1,258 @@
+"use client";
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register ScrollTrigger plugin
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+export default function Hero() {
+  // Refs for image containers
+  const imageRef1 = useRef<HTMLDivElement>(null);
+  const imageRef2 = useRef<HTMLDivElement>(null);
+  const imageRef3 = useRef<HTMLDivElement>(null);
+  const imageRef4 = useRef<HTMLDivElement>(null);
+  const imageRef5 = useRef<HTMLDivElement>(null);
+  const imageRef6 = useRef<HTMLDivElement>(null);
+  
+  // Refs for overlays
+  const overlayRef1 = useRef<HTMLDivElement>(null);
+  const overlayRef2 = useRef<HTMLDivElement>(null);
+  const overlayRef3 = useRef<HTMLDivElement>(null);
+  const overlayRef4 = useRef<HTMLDivElement>(null);
+  const overlayRef5 = useRef<HTMLDivElement>(null);
+  const overlayRef6 = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    // Setup animations for each image when they come into view
+    const setupAnimation = (imageRef: React.RefObject<HTMLDivElement>, overlayRef: React.RefObject<HTMLDivElement>) => {
+      if (!imageRef.current || !overlayRef.current) return;
+      
+      // Set initial states
+      gsap.set(imageRef.current, { opacity: 0 });
+      
+      // Set overlay initial opacity to fully visible
+      gsap.set(overlayRef.current, { opacity: 1 });
+      
+      // Create animation timeline
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: imageRef.current,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+          once: true,
+        }
+      });
+      
+      // Animate overlay away with a fade effect - faster
+      tl.to(overlayRef.current, {
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power2.out'
+      });
+      
+      // Fade in image - faster
+      tl.to(imageRef.current, {
+        opacity: 1,
+        duration: 0.4,
+        ease: 'power2.out'
+      }, '-=0.4');
+      
+      return tl;
+    };
+    
+    // Setup animations for all images
+    const timelines = [
+      setupAnimation(imageRef1, overlayRef1),
+      setupAnimation(imageRef2, overlayRef2),
+      setupAnimation(imageRef3, overlayRef3),
+      setupAnimation(imageRef4, overlayRef4),
+      setupAnimation(imageRef5, overlayRef5),
+      setupAnimation(imageRef6, overlayRef6)
+    ];
+    
+    // Cleanup function
+    return () => {
+      timelines.forEach(tl => {
+        if (tl && tl.scrollTrigger) {
+          tl.scrollTrigger.kill();
+        }
+        tl && tl.kill();
+      });
+    };
+  }, []);
+  
+  return (
+    <section className="w-full bg-[var(--secondary)]">
+      <div className="container-desktop p-0 overflow-hidden">
+        {/* Desktop Layout - 3x2 Grid */}
+        <div className="hidden lg:grid grid-cols-3 grid-rows-2 gap-0">
+          {/* Büyük resim - 2 kartı kaplıyor (sol üst) */}
+          <div className="col-span-2 row-span-1 relative h-[480px] bg-[var(--secondary)]" ref={imageRef1}>
+            <div ref={overlayRef1} className="absolute inset-0 bg-black z-10"></div>
+            <Image 
+              src="/hero.png" 
+              alt="Person training at gym" 
+              fill 
+              style={{objectFit: 'cover'}} 
+              priority
+            />
+          </div>
+
+          {/* FOR THE COMMITTED - sağ üst */}
+          <div className="col-span-1 row-span-1 border-r border-t border-black bg-[var(--secondary)] p-6">
+            <h2 className="text-[3rem] tracking-tight font-bold mb-4 text-black">FOR THE COMMITTED</h2>
+            <p className="text-[1rem] pt-30 mb-6 text-black">
+              Train like an athlete with top-tier equipment and expert programming. Whether you're building muscle or breaking PRs, we help you push past limits.
+            </p>
+            <Link href="/about-us" className="Button Button-secondary inline-block hover:bg-[var(--black)] hover:text-white">
+              ABOUT US
+            </Link>
+          </div>
+
+          {/* GUIDED BY EXPERTS - sol alt */}
+          <div className="col-span-1 row-span-1 p-6 border-l border-b border-black bg-[var(--secondary)]">
+            <h3 className="text-[3rem] tracking-tight font-bold mb-3 text-black">GUIDED BY EXPERTS</h3>
+            <p className="text-[1rem] pt-40 text-black">
+              We believe in creating a positive environment where you can thrive. We're here to help you achieve your goals and unlock your full potential.
+            </p>
+          </div>
+
+          {/* DYNAMIC OPEN GYM - orta alt */}
+          <div className="col-span-1 row-span-1 p-6 border-l border-b border-black bg-[var(--secondary)]">
+            <h3 className="text-[3rem] tracking-tight font-bold mb-3 text-black">DYNAMIC OPEN GYM</h3>
+            <p className="text-[1rem] pt-40 text-black">
+              Our facility is the optimal environment for strength training and performance, fully equipped with top-of-the-line tools, ample training areas, and a focus on functional movement.
+            </p>
+          </div>
+
+          {/* Küçük resim - 1 kartı kaplıyor (sağ alt) */}
+          <div className="col-span-1 row-span-1 relative h-[479px] bg-[var(--secondary)]" ref={imageRef2}>
+            <div ref={overlayRef2} className="absolute inset-0 bg-black z-10"></div>
+            <Image 
+              src="/Hero2.png" 
+              alt="Woman with training rope" 
+              fill 
+              style={{objectFit: 'cover'}} 
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Tablet Layout - 3x2 Grid */}
+        <div className="hidden md:grid lg:hidden grid-cols-3 grid-rows-2 gap-0 w-full h-full">
+          {/* Büyük resim - 1 satır, 1 sütun (sol üst) */}
+          <div className="col-span-2 row-span-1 relative h-[300px] bg-[var(--secondary)]" ref={imageRef3}>
+            <div ref={overlayRef3} className="absolute inset-0 bg-black z-10"></div>
+            <Image 
+              src="/hero.png" 
+              alt="Person training at gym" 
+              fill 
+              style={{objectFit: 'cover'}} 
+              priority
+            />
+          </div>
+
+          {/* FOR THE COMMITTED - sağ üst */}
+          <div className="col-span-1 row-span-1 bg-[var(--secondary)] p-5">
+            <h2 className="text-[1.5vh] whitespace-nowrap font-extrabold mb-3 text-black">FOR THE COMMITTED</h2>
+            <p className="text-sm mb-4 text-black">
+              Train like an athlete with top-tier equipment and expert programming. Whether you're building muscle or breaking PRs, we help you push past limits.
+            </p>
+            <Link href="/about-us" className="Button Button-secondary inline-block">
+              ABOUT US
+            </Link>
+          </div>
+
+          {/* GUIDED BY EXPERTS - sol orta */}
+          <div className="col-span-1 row-span-1 p-5 bg-[var(--secondary)]">
+            <h3 className="text-[1.25rem] font-bold mb-2 text-black">GUIDED BY EXPERTS</h3>
+            <p className="text-sm text-black">
+              We believe in creating a positive environment where you can thrive. We're here to help you achieve your goals and unlock your full potential.
+            </p>
+          </div>
+
+          {/* DYNAMIC OPEN GYM - sağ orta */}
+          <div className="col-span-1 row-span-1 p-5 bg-[var(--secondary)]">
+            <h3 className="text-[1.25rem] font-bold mb-2 text-black">DYNAMIC OPEN GYM</h3>
+            <p className="text-sm text-black">
+              Our facility is the optimal environment for strength training and performance, fully equipped with top-of-the-line tools, ample training areas, and a focus on functional movement.
+            </p>
+          </div>
+
+          {/* Küçük resim - alt satır, 2 sütun */}
+          <div className="col-span-1 row-span-1 relative h-[299px] bg-[var(--secondary)]" ref={imageRef4}>
+            <div ref={overlayRef4} className="absolute inset-0 bg-black z-10"></div>
+            <Image 
+              src="/Hero2.png" 
+              alt="Woman with training rope" 
+              fill 
+              style={{objectFit: 'cover'}} 
+              priority
+            />
+          </div>
+        </div>
+
+        {/* Mobile Layout - 1 sütun */}
+        <div className="block md:hidden space-y-0 w-full h-full">
+          {/* Ana resim */}
+          <div className="relative h-[250px] w-full bg-[var(--secondary)]" ref={imageRef5}>
+            <div ref={overlayRef5} className="absolute inset-0 bg-black z-10"></div>
+            <Image 
+              src="/hero.png" 
+              alt="Person training at gym" 
+              fill 
+              style={{objectFit: 'cover'}} 
+              priority
+            />
+          </div>
+          
+          {/* FOR THE COMMITTED */}
+          <div className="bg-[var(--secondary)] p-4">
+            <h2 className="text-[1.5rem] font-bold mb-3 text-black">FOR THE COMMITTED</h2>
+            <p className="text-sm mb-4 text-black">
+              Train like an athlete with top-tier equipment and expert programming. Whether you're building muscle or breaking PRs, we help you push past limits.
+            </p>
+            <Link href="/about-us" className="Button Button-secondary inline-block">
+              ABOUT US
+            </Link>
+          </div>
+          
+          {/* GUIDED BY EXPERTS */}
+          <div className="p-4 bg-[var(--secondary)] w-full">
+            <h3 className="text-[1.25rem] font-bold mb-2 text-black">GUIDED BY EXPERTS</h3>
+            <p className="text-sm text-black">
+              We believe in creating a positive environment where you can thrive. We're here to help you achieve your goals and unlock your full potential.
+            </p>
+          </div>
+          
+          {/* İkinci resim */}
+          <div className="relative h-[479px] w-full bg-[var(--secondary)]" ref={imageRef6}>
+            <div ref={overlayRef6} className="absolute inset-0 bg-black z-10"></div>
+            <Image 
+              src="/Hero2.png" 
+              alt="Woman with training rope" 
+              fill 
+              style={{objectFit: 'cover'}} 
+              priority
+            />
+          </div>
+          
+          {/* DYNAMIC OPEN GYM */}
+          <div className="p-4 bg-[var(--secondary)] w-full">
+            <h3 className="text-[1.25rem] font-bold mb-2 text-black">DYNAMIC OPEN GYM</h3>
+            <p className="text-sm text-black">
+              Our facility is the optimal environment for strength training and performance, fully equipped with top-of-the-line tools, ample training areas, and a focus on functional movement.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+                        
+}
