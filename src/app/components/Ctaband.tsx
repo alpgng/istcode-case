@@ -129,7 +129,7 @@ export default function Ctaband() {
               className="absolute inset-0 bg-black z-10"
             ></div>
             <Image
-              src="/image.png"
+              src="/gym.png"
               alt="People working out in gym"
               fill
               style={{ objectFit: "cover" }}
@@ -189,7 +189,7 @@ export default function Ctaband() {
                 className="absolute inset-0 bg-black z-10"
               ></div>
               <Image
-                src="/image.png"
+                src="/gym.png"
                 alt="People working out in gym"
                 fill
                 style={{ objectFit: "cover" }}
@@ -207,7 +207,7 @@ export default function Ctaband() {
               className="absolute inset-0 bg-black z-10"
             ></div>
             <Image
-              src="/image.png"
+              src="/gym.png"
               alt="People working out in gym"
               width={400}
               height={300}
