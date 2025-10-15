@@ -20,7 +20,6 @@ Primal Training is a modern, responsive fitness website built with Next.js and T
 - **UI Library**: [React 19.1.0](https://reactjs.org/)
 - **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
 - **Animations**: [GSAP 3.13.0](https://greensock.com/gsap/)
-- **Smooth Scrolling**: [@studio-freight/react-lenis 0.0.47](https://github.com/studio-freight/react-lenis)
 - **Language**: [TypeScript 5](https://www.typescriptlang.org/)
 - **Font**: [Geist](https://vercel.com/font) from Vercel
 
