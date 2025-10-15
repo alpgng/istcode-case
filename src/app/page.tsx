@@ -13,7 +13,6 @@ export default function Home() {
       <Trainband />
       <Hero />
       <CommunityBand />
-      
       <CTABand />
       <Spot />
       <Footer />

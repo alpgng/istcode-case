@@ -13,10 +13,10 @@ export default function Navbar() {
 
     return (
         <header className={`w-full ${isMenuOpen ? 'bg-white' : 'bg-[var(--secondary)]'} relative`}>
-            {/* Navbar */}
+            
             <div className={`container-desktop border-y border-black px-4 py-4 ${isMenuOpen ? 'bg-white' : ''}`}>
                 <div className="flex items-center justify-between">
-                    {/* Logo */}
+                    
                     <div className="flex items-center">
                         <Link href="/" className="flex items-center">
                             <Image 
@@ -49,7 +49,7 @@ export default function Navbar() {
                         )}
                     </button>
 
-                    {/* Desktop Navigation */}
+                    
                     <div className="hidden md:flex items-center space-x-8">
                         <Link href="/" className="Navlink text-black hover:opacity-50  ">
                             HOME
@@ -64,7 +64,7 @@ export default function Navbar() {
                 </div>
             </div>
             
-            {/* Mobile Menu - Outside container for full width */}
+            
             {isMenuOpen && (
                 <div className="md:hidden bg-white w-full absolute left-0 right-0 z-50 ">
                     <nav className="flex flex-col w-full">

@@ -5,9 +5,9 @@ export default function Footer() {
     return (
         <footer className="w-full bg-[#e8ecff] py-12">
             
-                {/* Desktop View - Header and 3 columns */}
+                {/* Desktop View  */}
                 <div className="hidden md:flex container-desktop flex-col">
-                    {/* Header with Logo and PrimalTraining */}
+                    
                     <div className="flex justify-between w-full mb-16">
                         <div className="relative w-[229px] h-[139px]">
                             <Image 
@@ -21,16 +21,16 @@ export default function Footer() {
                         <h2 className="text-[4vh] text-black font-bold">PrimalTraining</h2>
                     </div>
                     
-                    {/* Three columns for footer content */}
+                    
                     <div className="flex justify-between w-full">
-                        {/* Left column - CONTACT */}
+                        
                         <div>
                             <h3 className="text-black font-extrabold mb-4 uppercase">CONTACT</h3>
                             <p className="text-black font-bold mb-1">Email: hello@figma.com</p>
                             <p className="text-black font-bold">Phone: (203) 555-5555</p>
                         </div>
 
-                        {/* Middle column - OPENING HOURS */}
+                        
                         <div>
                             <h3 className="text-black font-extrabold mb-4 uppercase">OPENING HOURS</h3>
                             <div className="flex">
@@ -49,7 +49,7 @@ export default function Footer() {
                             </div>
                         </div>
 
-                        {/* Right column - SOCIAL */}
+                        
                         <div>
                             <h3 className="text-black font-extrabold mb-4 uppercase">SOCIAL</h3>
                             <p className="text-black font-bold mb-1">Instagram</p>
@@ -60,7 +60,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Tablet View - Logo at top, 3 columns below */}
+                {/* Tablet View  */}
                 <div className="hidden sm:flex md:hidden flex-col">
                     <div className="flex justify-center mb-8">
                         <div className="relative w-[80px] h-[80px]">
@@ -110,7 +110,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Mobile View - Stacked vertically */}
+                {/* Mobile View  */}
                 <div className="flex flex-col p-2 sm:hidden">
                     <div className="flex flex-col items-start mb-8">
                         <div className="flex items-center mb-4">
